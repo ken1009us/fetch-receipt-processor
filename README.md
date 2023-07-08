@@ -1,5 +1,19 @@
 # Receipt Processing and Points Calculation
 
+```bash
+    ______     __       __       ____                              __
+   / ____/__  / /______/ /_     / __ \___ _      ______ __________/ /____
+  / /_  / _ \/ __/ ___/ __ \   / /_/ / _ \ | /| / / __ `/ ___/ __  / ___/
+ / __/ /  __/ /_/ /__/ / / /  / _, _/  __/ |/ |/ / /_/ / /  / /_/ (__  )
+/_/    \___/\__/\___/_/ /_/  /_/ |_|\___/|__/|__/\__,_/_/   \__,_/____/
+
+
+=== Fetch Receipt Processor System ===
+1. Process Receipt
+2. Retrieve Points
+3. Exit
+```
+
 This repository contains a set of Python scripts and modules for processing receipts, generating receipt IDs, and calculating points based on receipt information. The system is built using the FastAPI framework and utilizes Pydantic for data validation.
 
 ## Prerequisites
@@ -37,6 +51,8 @@ $ pip install -r requirements.txt
 
 ### Option1: Terminal
 
+NOTE: If you want to test the app locally without using Docker, you'll need to make a slight adjustment to the URL. Instead of http://localhost:80, please use http://localhost:8000.
+
 1. Start the FastAPI server:
 
 ```bash
@@ -51,7 +67,7 @@ $ python3 cli.py
 
 The cli script provides a menu-driven interface to process receipts and retrieve points. It allows you to manually enter receipt information or provide a path to a JSON file containing the receipt data.
 
-### Option2: Docker
+### Option2: Docker (DEFAULT)
 
 1. Make sure you have Docker installed on your system. You can download and install Docker from the official Docker website: https://www.docker.com/.
 
