@@ -37,13 +37,16 @@ def process_receipt(data):
     - "Receipt processed." and the generated receipt ID if successful.
     - "Error processing receipt." otherwise.
     """
-    response = requests.post('http://localhost:80/receipts/process', json=data, headers={"Content-Type":"application/json"})
-    if response.status_code == 200:
+
+    try:
+        response = requests.post('http://localhost:80/receipts/process', json=data, headers={"Content-Type": "application/json"})
+        response.raise_for_status()
         receipt_id = response.json()["id"]
         print("Receipt processed.")
         print(f"ID: {receipt_id}")
-    else:
+    except requests.exceptions.RequestException as e:
         print("Error processing receipt.")
+        print(e)
 
 
 def retrieve_points(receipt_id):
@@ -57,8 +60,9 @@ def retrieve_points(receipt_id):
     - The total points and breakdown if successful.
     - "Error retrieving points." otherwise.
     """
-    response = requests.get(f'http://localhost:80/receipts/{receipt_id}/points')
-    if response.status_code == 200:
+    try:
+        response = requests.get(f'http://localhost:80/receipts/{receipt_id}/points')
+        response.raise_for_status()
         points = response.json()['points']
         breakdown = response.json()['breakdown']
         print(f'Total Points: {points}')
@@ -68,8 +72,9 @@ def retrieve_points(receipt_id):
         print("  + ---------")
         print(f"  = {points} points")
         print()
-    else:
-        print('Error retrieving points.')
+    except requests.exceptions.RequestException as e:
+        print("Error retrieving points.")
+        print(e)
 
 
 def display_menu():
@@ -88,6 +93,16 @@ def process_receipt_menu():
     print("\n--- Process Receipt ---")
     print("1. Manually enter receipt info")
     print("2. Load receipt info from a JSON file")
+    print("3. Back")
+
+
+def retrieve_points_menu():
+    """
+    Provides options to the user for entering points information.
+    """
+    print("\n--- Retrieve Points ---")
+    print("1. Enter the receipt ID")
+    print("2. Back")
 
 
 def get_manual_receipt_data():
@@ -133,6 +148,8 @@ def process_receipt_cli():
         p = Path(file_path)
         receipt_data = json.load(open(p))
         process_receipt(receipt_data)
+    elif option == '3':
+        return
     else:
         print("Invalid choice. Please try again.")
 
@@ -141,9 +158,14 @@ def retrieve_points_cli():
     """
     Handles the retrieve points functionality in the CLI.
     """
-    print("\n--- Retrieve Points ---")
-    receipt_id = input("Enter the receipt ID: ")
-    retrieve_points(receipt_id)
+    retrieve_points_menu()
+    option = input("Enter your choice: ")
+
+    if option == '1':
+        receipt_id = input("Enter the receipt ID: ")
+        retrieve_points(receipt_id)
+    elif option == '2':
+        return
 
 
 def main():
@@ -171,7 +193,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-
