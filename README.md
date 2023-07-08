@@ -19,7 +19,7 @@ This repository contains a set of Python scripts and modules for processing rece
 ## Prerequisites
 
 - Python 3.11.4
-- Required packages: `fastapi`, `uvicorn`, `pydantic`, `requests`
+- Required packages: `fastapi`, `uvicorn`, `pydantic`, `requests`, `pyfiglet`
 
 ## Installation
 
@@ -49,25 +49,7 @@ $ pip install -r requirements.txt
 
 ## Usage
 
-### Option1: Terminal
-
-NOTE: If you want to test the app locally without using Docker, you'll need to make a slight adjustment to the URL. Instead of http://localhost:80, please use http://localhost:8000.
-
-1. Start the FastAPI server:
-
-```bash
-$ uvicorn app.main:app --reload
-```
-
-2. Use the Command Line Interface script to interact with the server:
-
-```bash
-$ python3 cli.py
-```
-
-The cli script provides a menu-driven interface to process receipts and retrieve points. It allows you to manually enter receipt information or provide a path to a JSON file containing the receipt data.
-
-### Option2: Docker (DEFAULT)
+### Option1: Docker (DEFAULT)
 
 1. Make sure you have Docker installed on your system. You can download and install Docker from the official Docker website: https://www.docker.com/.
 
@@ -95,6 +77,23 @@ The docker run command creates and starts a new Docker container from the receip
 $ python3 cli.py
 ```
 
+The cli script provides a menu-driven interface to process receipts and retrieve points. It allows you to manually enter receipt information or provide a path to a JSON file containing the receipt data.
+
+### Option2: Terminal
+
+NOTE: If you want to test the app locally without using Docker, you'll need to make a slight adjustment to the URL. Instead of http://localhost:80, please use http://localhost:8000.
+
+1. Start the FastAPI server:
+
+```bash
+$ uvicorn app.main:app --reload
+```
+
+2. Use the Command Line Interface script to interact with the server:
+
+```bash
+$ python3 cli.py
+```
 
 ## Files
 
