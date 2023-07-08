@@ -40,7 +40,7 @@ def get_receipt_id(receipt: Receipt):
     Returns:
     - dict: A dictionary containing the generated receipt ID.
     """
-    id = generate_receipt_id(receipt)
+    id = generate_receipt_id()
     uuid_dict[id] = receipt
 
     return {"id": id}
