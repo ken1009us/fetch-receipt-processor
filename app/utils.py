@@ -4,10 +4,8 @@ receipt IDs, calculating points, and performing time conversions.
 
 Dependencies:
 - math: Provides mathematical functions.
-- struct: Provides functions for working with binary data.
 - uuid: Generates and manipulates UUIDs.
 - datetime: Provides classes for manipulating dates and times.
-- models: Contains the Item and Receipt models used in the calculations.
 
 Functions:
 - generate_receipt_id(): Generates a receipt ID and returns it.
