@@ -43,10 +43,10 @@ def process_receipt(data):
         response = requests.post('http://localhost:80/receipts/process', json=data, headers={"Content-Type": "application/json"})
         response.raise_for_status()
         receipt_id = response.json()["id"]
-        print("Receipt processed.")
+        print("\nReceipt processed.")
         print(f"ID: {receipt_id}")
     except requests.exceptions.RequestException as e:
-        print("Error processing receipt.")
+        print("\nError processing receipt.")
         print(e)
 
 
@@ -66,7 +66,7 @@ def retrieve_points(receipt_id):
         response.raise_for_status()
         points = response.json()['points']
         breakdown = response.json()['breakdown']
-        print(f'Total Points: {points}')
+        print(f'\nTotal Points: {points}')
         print("Breakdown:")
         for breakdown_item in breakdown:
             print("   " + breakdown_item)
@@ -74,7 +74,7 @@ def retrieve_points(receipt_id):
         print(f"  = {points} points")
         print()
     except requests.exceptions.RequestException as e:
-        print("Error retrieving points.")
+        print("\nError retrieving points.")
         print(e)
 
 
@@ -82,6 +82,7 @@ def display_menu():
     """
     Displays the main menu options to the user.
     """
+    print("\n=== Fetch Receipt Processor System ===")
     print("1. Process Receipt")
     print("2. Retrieve Points")
     print("3. Exit")
@@ -94,7 +95,7 @@ def process_receipt_menu():
     print("\n--- Process Receipt ---")
     print("1. Manually enter receipt info")
     print("2. Load receipt info from a JSON file")
-    print("3. Back")
+    print("3. Go back to the main menu")
 
 
 def retrieve_points_menu():
@@ -103,7 +104,7 @@ def retrieve_points_menu():
     """
     print("\n--- Retrieve Points ---")
     print("1. Enter the receipt ID")
-    print("2. Back")
+    print("2. Go back to the main menu")
 
 
 def get_manual_receipt_data():
@@ -117,11 +118,15 @@ def get_manual_receipt_data():
     total = input('Total: ')
 
     items = []
-    num_items = int(input('Number of items: '))
-    for i in range(num_items):
-        item_description = input(f'Item {i + 1} Description: ')
-        item_price = input(f'Item {i + 1} Price: ')
-        items.append({"shortDescription": item_description, "price": item_price})
+    try:
+        num_items = int(input('Number of items: '))
+        for i in range(num_items):
+            item_description = input(f'Item {i + 1} Description: ')
+            item_price = input(f'Item {i + 1} Price: ')
+            items.append({"shortDescription": item_description, "price": item_price})
+    except ValueError:
+        print("\nInvalid input. Please enter a valid number.")
+        return get_manual_receipt_data()
 
     receipt_data = {
         "retailer": retailer,
@@ -139,20 +144,27 @@ def process_receipt_cli():
     Handles the process receipt functionality in the CLI.
     """
     process_receipt_menu()
-    option = input("Enter your choice: ")
+    option = input("\nEnter your choice: ")
 
     if option == '1':
         receipt_data = get_manual_receipt_data()
         process_receipt(receipt_data)
     elif option == '2':
-        file_path = input("Enter the path to the JSON file: ")
-        p = Path(file_path)
-        receipt_data = json.load(open(p))
-        process_receipt(receipt_data)
+        try:
+            file_path = input("Enter the path to the JSON file: ")
+            p = Path(file_path)
+            receipt_data = json.load(open(p))
+            process_receipt(receipt_data)
+        except FileNotFoundError:
+            print("\nFile not found. Please enter a valid file path.")
+            process_receipt_cli()
+        except json.JSONDecodeError:
+            print("\nInvalid JSON file. Please make sure the file contains valid JSON data.")
+            process_receipt_cli()
     elif option == '3':
         return
     else:
-        print("Invalid choice. Please try again.")
+        print("\nInvalid choice. Please try again.")
 
 
 def retrieve_points_cli():
@@ -160,13 +172,15 @@ def retrieve_points_cli():
     Handles the retrieve points functionality in the CLI.
     """
     retrieve_points_menu()
-    option = input("Enter your choice: ")
+    option = input("\nEnter your choice: ")
 
     if option == '1':
         receipt_id = input("Enter the receipt ID: ")
         retrieve_points(receipt_id)
     elif option == '2':
         return
+    else:
+        print("\nInvalid choice. Please try again.")
 
 
 def main():
@@ -175,11 +189,10 @@ def main():
     """
     f = pyfiglet.figlet_format("Fetch Rewards", font="slant", width=20)
     print(f)
-    print("=== Fetch Receipt Processor System ===")
 
     while True:
         display_menu()
-        choice = input("Enter your choice: ")
+        choice = input("\nEnter your choice: ")
 
         if choice == '1':
             process_receipt_cli()
@@ -189,7 +202,7 @@ def main():
             print("\nThank you for using the Fetch Receipt Processor System!")
             break
         else:
-            print("Invalid choice. Please try again.")
+            print("\nInvalid choice. Please try again.")
 
 
 if __name__ == '__main__':
