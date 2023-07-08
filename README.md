@@ -96,6 +96,8 @@ The docker run command creates and starts a new Docker container from the receip
 5. Use the Command Line Interface script to interact with the server:
 
 ```bash
+$ source .nox/setup/bin/activate
+
 $ python3 cli.py
 ```
 
@@ -114,6 +116,8 @@ $ uvicorn app.main:app --reload
 2. Use the Command Line Interface script to interact with the server:
 
 ```bash
+$ source .nox/setup/bin/activate
+
 $ python3 cli.py
 ```
 
