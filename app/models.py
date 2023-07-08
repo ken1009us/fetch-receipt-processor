@@ -15,7 +15,8 @@ Models:
   - purchaseDate (str): The purchase date.
   - purchaseTime (str): The purchase time.
   - total (str): The total amount of the receipt.
-  - items (List[Item]): A list of Item objects representing the items in the receipt.
+  - items (List[Item]): A list of Item objects representing the items
+    in the receipt.
 
 """
 
@@ -45,7 +46,8 @@ class Receipt(BaseModel):
     - purchaseDate (str): The purchase date.
     - purchaseTime (str): The purchase time.
     - total (str): The total amount of the receipt.
-    - items (List[Item]): A list of Item objects representing the items in the receipt.
+    - items (List[Item]): A list of Item objects representing the items
+      in the receipt.
     """
     retailer: str
     purchaseDate: str

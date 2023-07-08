@@ -1,28 +1,35 @@
 """
-This module contains a CLI program for interacting with the Fetch Receipt Processor system.
+This module contains a CLI program for interacting with the
+Fetch Receipt Processor system.
 
 Dependencies:
 - json: Provides functions for working with JSON data.
 - requests: Allows making HTTP requests to the FastAPI server.
 
 Functions:
-- process_receipt(data): Sends a POST request to the FastAPI server to process a receipt based on the provided data.
-- retrieve_points(receipt_id): Sends a GET request to the FastAPI server to retrieve points for a given receipt ID.
+- process_receipt(data): Sends a POST request to the FastAPI server to
+  process a receipt based on the provided data.
+- retrieve_points(receipt_id): Sends a GET request to the FastAPI server
+  to retrieve points for a given receipt ID.
 - display_menu(): Displays the main menu options to the user.
-- process_receipt_menu(): Provides options to the user for entering receipt information.
+- process_receipt_menu(): Provides options to the user for
+  entering receipt information.
 - retrieve_points_menu(): Provides options to the user for retrieve points.
-- get_manual_receipt_data(): Prompts the user to manually enter receipt information.
+- get_manual_receipt_data(): Prompts the user to manually
+  enter receipt information.
 - process_receipt_cli(): Handles the process receipt functionality in the CLI.
 - retrieve_points_cli(): Handles the retrieve points functionality in the CLI.
 - main(): Main routine for the CLI program.
 
-Note: The script assumes that the FastAPI server is running and accessible at 'http://localhost:80'. Modify the server URL as needed.
+Note: The script assumes that the FastAPI server is running and accessible
+      at 'http://localhost:80'. Modify the server URL as needed.
 
 """
 
 import json
-import requests
+import os
 import pyfiglet
+import requests
 
 from pathlib import Path
 
@@ -32,7 +39,8 @@ def process_receipt(data):
     Sends a POST request to the FastAPI server to process a receipt.
 
     Parameters:
-    - data (dict): The receipt data to be processed, either entered manually or loaded from a JSON file.
+    - data (dict): The receipt data to be processed, either entered manually
+                   or loaded from a JSON file.
 
     Prints:
     - "Receipt processed." and the generated receipt ID if successful.
@@ -40,11 +48,14 @@ def process_receipt(data):
     """
 
     try:
-        response = requests.post('http://localhost:80/receipts/process', json=data, headers={"Content-Type": "application/json"})
-        response.raise_for_status()
-        receipt_id = response.json()["id"]
+        res = requests.post('http://localhost:80/receipts/process',
+                            json=data,
+                            headers={"Content-Type": "application/json"})
+        res.raise_for_status()
+        receipt_id = res.json()["id"]
         print("\nReceipt processed.")
         print(f"ID: {receipt_id}")
+        print("Please remember this ID for retrieving points.")
     except requests.exceptions.RequestException as e:
         print("\nError processing receipt.")
         print(e)
@@ -52,7 +63,8 @@ def process_receipt(data):
 
 def retrieve_points(receipt_id):
     """
-    Sends a GET request to the FastAPI server to retrieve points for a given receipt ID.
+    Sends a GET request to the FastAPI server to retrieve points
+    for a given receipt ID.
 
     Parameters:
     - receipt_id (str): The ID of the receipt for which to retrieve the points.
@@ -62,10 +74,10 @@ def retrieve_points(receipt_id):
     - "Error retrieving points." otherwise.
     """
     try:
-        response = requests.get(f'http://localhost:80/receipts/{receipt_id}/points')
-        response.raise_for_status()
-        points = response.json()['points']
-        breakdown = response.json()['breakdown']
+        res = requests.get(f'http://localhost:80/receipts/{receipt_id}/points')
+        res.raise_for_status()
+        points = res.json()['points']
+        breakdown = res.json()['breakdown']
         print(f'\nTotal Points: {points}')
         print("Breakdown:")
         for breakdown_item in breakdown:
@@ -123,7 +135,8 @@ def get_manual_receipt_data():
         for i in range(num_items):
             item_description = input(f'Item {i + 1} Description: ')
             item_price = input(f'Item {i + 1} Price: ')
-            items.append({"shortDescription": item_description, "price": item_price})
+            items.append({"shortDescription": item_description,
+                          "price": item_price})
     except ValueError:
         print("\nInvalid input. Please enter a valid number.")
         return get_manual_receipt_data()
@@ -151,7 +164,9 @@ def process_receipt_cli():
         process_receipt(receipt_data)
     elif option == '2':
         try:
-            file_path = input("Enter the path to the JSON file: ")
+            print("Enter the path to the JSON file")
+            file_path = input("(i.e., ./example/morning-receipt.json): ")
+            file_path = os.path.expanduser(file_path)
             p = Path(file_path)
             receipt_data = json.load(open(p))
             process_receipt(receipt_data)
@@ -159,7 +174,8 @@ def process_receipt_cli():
             print("\nFile not found. Please enter a valid file path.")
             process_receipt_cli()
         except json.JSONDecodeError:
-            print("\nInvalid JSON file. Please make sure the file contains valid JSON data.")
+            print("\nInvalid JSON file. \
+                  Please make sure the file contains valid JSON data.")
             process_receipt_cli()
     elif option == '3':
         return

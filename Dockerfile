@@ -5,7 +5,7 @@ FROM python:3.11.4
 WORKDIR /code
 
 # Create and activate the virtual environment
-RUN python -m venv .venv
+RUN python3 -m venv .venv
 ENV PATH="/code/.venv/bin:$PATH"
 
 # Copy the requirements.txt file to the working directory
