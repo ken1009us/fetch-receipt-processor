@@ -15,7 +15,19 @@ This repository contains a set of Python scripts and modules for processing rece
 $ git clone https://github.com/ken1009us/fetch-receipt-processor.git
 ```
 
-2. Install the required packages using pip:
+2. Create a new virtual environment using the venv module. You can choose a name for your virtual environment (e.g., ".venv"):
+
+```bash
+$ python3 -m venv .venv
+```
+
+3. Activate the virtual environment:
+
+```bash
+$ source .venv/bin/activate
+```
+
+4. Install the required packages using pip:
 
 ```bash
 $ pip install -r requirements.txt
