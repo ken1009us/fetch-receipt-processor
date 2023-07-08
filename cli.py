@@ -10,6 +10,7 @@ Functions:
 - retrieve_points(receipt_id): Sends a GET request to the FastAPI server to retrieve points for a given receipt ID.
 - display_menu(): Displays the main menu options to the user.
 - process_receipt_menu(): Provides options to the user for entering receipt information.
+- retrieve_points_menu(): Provides options to the user for retrieve points.
 - get_manual_receipt_data(): Prompts the user to manually enter receipt information.
 - process_receipt_cli(): Handles the process receipt functionality in the CLI.
 - retrieve_points_cli(): Handles the retrieve points functionality in the CLI.
