@@ -29,23 +29,45 @@ This repository contains a set of Python scripts and modules for processing rece
 $ git clone https://github.com/ken1009us/fetch-receipt-processor.git
 ```
 
-2. Create a new virtual environment using the venv module. You can choose a name for your virtual environment (e.g., ".venv"):
+2. Navigate to the project directory:
 
 ```bash
-$ python3 -m venv .venv
+$ cd fetch-receipt-processor
 ```
 
-3. Activate the virtual environment:
+3. Run the following command to install nox:
 
 ```bash
-$ source .venv/bin/activate
+$ pip3 install nox
 ```
 
-4. Install the required packages using pip:
+This will download and install the latest version of nox from the Python Package Index (PyPI).
+
+## Setup
+
+After installing nox, you can set it up and activate the virtual environment by following these steps:
+
+1. Ensure you are in the root directory of your project.
+
+2. Open a command prompt or terminal window.
+
+3. Run the following command to set up the project:
 
 ```bash
-$ pip install -r requirements.txt
+$ nox -s setup
 ```
+
+4. Once the setup session completes successfully, you can activate the virtual environment by running the following command:
+
+```bash
+$ source .nox/setup/bin/activate
+```
+
+This command activates the virtual environment created by nox specifically for your project.
+
+Note: The source command is specific to Unix-like systems (e.g., Linux or macOS). If you're using a different operating system, please refer to the appropriate command to activate a virtual environment. EX: `nox\Scripts\activate.bat`
+
+5. After activating the virtual environment, you can now run additional commands or scripts within the project's isolated environment. This ensures that the dependencies and configuration set up during the setup session are available.
 
 ## Usage
 
