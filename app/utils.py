@@ -20,11 +20,9 @@ Note: The calculate_points function assumes the presence of a decode_receipt_id 
 
 
 import math
-import struct
 import uuid
 
 from datetime import datetime
-from models import Item, Receipt
 
 
 def generate_receipt_id(receipt):

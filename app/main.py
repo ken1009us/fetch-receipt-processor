@@ -21,8 +21,8 @@ Functions:
 
 
 from fastapi import FastAPI
-from models import Item, Receipt
-from utils import generate_receipt_id, calculate_points
+from .models import Receipt
+from .utils import generate_receipt_id, calculate_points
 
 
 app = FastAPI()
