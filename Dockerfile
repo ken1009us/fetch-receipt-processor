@@ -4,6 +4,10 @@ FROM python:3.11.4
 # Set the working directory inside the container
 WORKDIR /code
 
+# Create and activate the virtual environment
+RUN python -m venv .venv
+ENV PATH="/code/.venv/bin:$PATH"
+
 # Copy the requirements.txt file to the working directory
 COPY ./requirements.txt /code/requirements.txt
 
