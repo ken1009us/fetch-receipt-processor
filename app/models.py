@@ -17,8 +17,6 @@ Models:
   - total (str): The total amount of the receipt.
   - items (List[Item]): A list of Item objects representing the items in the receipt.
 
-Note: Pydantic's BaseModel provides automatic data validation and serialization/deserialization capabilities based on the defined field types.
-
 """
 
 
