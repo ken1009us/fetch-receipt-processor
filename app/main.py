@@ -29,7 +29,6 @@ app = FastAPI()
 
 uuid_dict = {}
 
-
 @app.post("/receipts/process")
 def get_receipt_id(receipt: Receipt):
     """

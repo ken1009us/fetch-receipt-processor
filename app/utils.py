@@ -98,8 +98,7 @@ def calculate_points(id, uuid_dict):
         alphanumeric_count = 0
         alphanumeric_count += sum(char.isalnum() for char in retailer_name)
         points += alphanumeric_count
-        breakdown.append(f"{alphanumeric_count} points - retailer name "
-                    f"({retailer_name}) has {alphanumeric_count} alphanumeric characters")
+        breakdown.append(f"{alphanumeric_count} points - retailer name has {alphanumeric_count} characters")
 
         if total.is_integer():
             points += 50
@@ -111,8 +110,11 @@ def calculate_points(id, uuid_dict):
 
         item_count = len(items)
         points += ((item_count // 2) * 5)
-        breakdown.append(f"{((item_count // 2) * 5)} points - {item_count} items "
-                    f"({item_count // 2} pairs @ 5 points each)")
+        if item_count % 2 == 0:
+            counted_items = item_count
+        else:
+            counted_items = item_count - 1
+        breakdown.append(f"{((item_count // 2) * 5)} points - {counted_items} items ({item_count // 2} pairs @ 5 points each)")
 
         for item in items:
             description = item.shortDescription
@@ -122,28 +124,22 @@ def calculate_points(id, uuid_dict):
             if trimmed_length % 3 == 0:
                 item_points = int(math.ceil((price * 0.2)))
                 points += item_points
-                breakdown.append(f'{item_points} points - "{description.strip()}" is {trimmed_length} characters (a multiple of 3)'
-                           f"item price of {price} * 0.2 = {round(price * 0.2, 4)}, rounded up is {item_points} points")
+                breakdown.append(f'{item_points} points - "{description.strip()}" is {trimmed_length} characters (a multiple of 3)\n'
+                           f"item price of {price} * 0.2 = {round(price * 0.2, 2)}, rounded up is {item_points} points")
 
         _, _, purchase_day = map(int, purchase_date.split('-'))
         if (purchase_day % 2) != 0:
             points += 6
             breakdown.append("6 points - purchase day is odd")
 
-        purchase_hour, _ = map(int, purchase_time.split(':'))
-        if 14 < purchase_hour < 16:
-            points += 10
-            time = convert_time(purchase_time)
-            breakdown.append("10 points - {time} is between 2:00pm and 4:00pm")
+        purchase_hour, purchase_min = map(int, purchase_time.split(':'))
+        if 14 <= purchase_hour < 16:
+            if purchase_min != 0:
+                points += 10
+                time = convert_time(purchase_time)
+                breakdown.append(f"10 points - {time} is between 2:00pm and 4:00pm")
 
     else:
         print("No receipt!!")
 
     return points, breakdown
-
-
-
-
-
-
-
