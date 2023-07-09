@@ -37,6 +37,8 @@ $ cd fetch-receipt-processor
 
 3. Run the following command to install nox:
 
+NOTE: Only for the user who choose NOT to utilize Docker, if you want to use Docker, there is no need to install nox.
+
 ```bash
 $ pip3 install nox
 ```
@@ -46,6 +48,8 @@ This will download and install the latest version of nox from the Python Package
 ## Setup
 
 After installing nox, you can set it up and activate the virtual environment by following these steps:
+
+NOTE: Only for the user who choose NOT to utilize Docker.
 
 1. Ensure you are in the root directory of your project.
 
@@ -65,7 +69,7 @@ $ source .nox/setup/bin/activate
 
 This command activates the virtual environment created by nox specifically for your project.
 
-Note: The source command is specific to Unix-like systems (e.g., Linux or macOS). If you're using a different operating system, please refer to the appropriate command to activate a virtual environment. EX: `nox\Scripts\activate.bat`
+Note: The source command is specific to Unix-like systems (e.g., Linux or macOS). If you're using a different operating system, please refer to the appropriate command to activate a virtual environment. EX: `nox\Scripts\activate.bat`.
 
 5. After activating the virtual environment, you can now run additional commands or scripts within the project's isolated environment. This ensures that the dependencies and configuration set up during the setup session are available.
 
@@ -93,11 +97,17 @@ $ docker run -d --name mycontainer -p 80:80 receipt-processor
 
 The docker run command creates and starts a new Docker container from the receipt-processor image. The -d flag runs the container in detached mode (in the background), --name specifies a name for the container, and -p maps the container's port 80 to the host's port 80, allowing access to the FastAPI server.
 
-5. Use the Command Line Interface script to interact with the server:
+5. Run the following command to install pyfiglet:
 
 ```bash
-$ source .nox/setup/bin/activate
+$ pip3 install pyfiglet==0.7
+```
 
+Pyfiglet is a Python library that allows us to create ASCII art from text. I used it in CLI to enhance the visual presentation of text-based outputs.
+
+6. Use the Command Line Interface script to interact with the server:
+
+```bash
 $ python3 cli.py
 ```
 
