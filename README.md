@@ -39,9 +39,9 @@ $ cd fetch-receipt-processor
 
 NOTE: Before proceeding with the installation of the Python and pip, ensure that they are installed on your system. If you already have them installed, you can skip these steps.
 
-a. Visit the official Python website at python.org.
-b. Download the latest version of Python for your operating system.
-c. Run the installer and follow the instructions to install Python.
+a. Visit the official Python website at [python.org](https://www.python.org/).\
+b. Download the latest version of Python for your operating system.\
+c. Run the installer and follow the instructions to install Python.\
 d. Make sure to select the option to add Python to your system's PATH during the installation process.
 
 4. Installing pip
@@ -185,4 +185,3 @@ $ python3 cli.py
 ## Contributing
 
 Contributions to this repository are welcome. If you find any issues or have suggestions for improvements, please create a new issue or submit a pull request.
-
