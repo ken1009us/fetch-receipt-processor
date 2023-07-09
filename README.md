@@ -18,7 +18,7 @@ This repository contains a set of Python scripts and modules for processing rece
 
 ## Prerequisites
 
-- Python 3.11.4
+- Python
 - Required packages: `fastapi`, `uvicorn`, `pydantic`, `requests`, `pyfiglet`
 
 ## Installation
@@ -35,7 +35,39 @@ $ git clone https://github.com/ken1009us/fetch-receipt-processor.git
 $ cd fetch-receipt-processor
 ```
 
-3. Run the following command to install nox:
+3. Installing Python
+
+NOTE: Before proceeding with the installation of the Python and pip, ensure that they are installed on your system. If you already have them installed, you can skip these steps.
+
+a. Visit the official Python website at python.org.
+b. Download the latest version of Python for your operating system.
+c. Run the installer and follow the instructions to install Python.
+d. Make sure to select the option to add Python to your system's PATH during the installation process.
+
+4. Installing pip
+
+Pip is a package management system used to install and manage Python packages. It is usually installed by default with Python. To verify if pip is installed, open a terminal/command prompt and run the following command:
+
+```bash
+$ pip --version
+```
+
+If pip is not installed or you have an older version, follow the steps below to install or upgrade it.
+
+a. Open a terminal/command prompt.
+b. Run the following command to install or upgrade pip:
+
+```bash
+$ python -m ensurepip --upgrade
+```
+
+For Windows:
+
+```bash
+C:> py -m ensurepip --upgrade
+```
+
+5. Run the following command to install nox:
 
 NOTE: ONLY for the user who choose NOT to utilize Docker, if you want to use Docker, there is no need to install nox. You can directly proceed to the section [Usage Option 1: Docker](#usage)
 
