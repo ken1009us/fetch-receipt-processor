@@ -37,7 +37,8 @@ $ cd fetch-receipt-processor
 
 3. Run the following command to install nox:
 
-NOTE: Only for the user who choose NOT to utilize Docker, if you want to use Docker, there is no need to install nox.
+NOTE: ONLY for the user who choose NOT to utilize Docker, if you want to use Docker, there is no need to install nox. You can directly proceed to the section [Usage Option 1: Docker](#usage)
+
 
 ```bash
 $ pip3 install nox
@@ -45,7 +46,9 @@ $ pip3 install nox
 
 This will download and install the latest version of nox from the Python Package Index (PyPI).
 
-## Setup
+## Nox Setup
+
+NOTE: ONLY for the user who choose NOT to utilize Docker
 
 After installing nox, you can set it up and activate the virtual environment by following these steps:
 
@@ -75,7 +78,7 @@ Note: The source command is specific to Unix-like systems (e.g., Linux or macOS)
 
 ## Usage
 
-### Option1: Docker (DEFAULT)
+### Option 1: Docker (DEFAULT)
 
 1. Make sure you have Docker installed on your system. You can download and install Docker from the official Docker website: https://www.docker.com/.
 
@@ -113,17 +116,23 @@ $ python3 cli.py
 
 The cli script provides a menu-driven interface to process receipts and retrieve points. It allows you to manually enter receipt information or provide a path to a JSON file containing the receipt data.
 
-### Option2: Terminal
+### Option 2: Terminal
 
 NOTE: If you want to test the app locally without using Docker, you'll need to make a slight adjustment to the URL. Instead of http://localhost:80, please use http://localhost:8000.
 
-1. Start the FastAPI server:
+1. Navigate to the project directory in your terminal
+
+2. Before proceeding, make sure to fully install and set up Nox, and then activate the environment
+
+3. Start the FastAPI server:
 
 ```bash
 $ uvicorn app.main:app --reload
 ```
 
-2. Use the Command Line Interface script to interact with the server:
+4. Launch a new terminal window or tab and navigate to the project directory
+
+5. Use the Command Line Interface script to interact with the server:
 
 ```bash
 $ source .nox/setup/bin/activate
