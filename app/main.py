@@ -67,7 +67,6 @@ def get_points(id: str):
     """
     if id not in uuid_dict:
         raise HTTPException(status_code=404, detail="Receipt ID not found.")
-
     points = uuid_dict[id][1][0]
     breakdown = uuid_dict[id][1][1]
     return {"points": points, "breakdown": breakdown}
