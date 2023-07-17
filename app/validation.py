@@ -7,10 +7,18 @@ def validate_date(date_str):
     Returns True if the date is valid, False otherwise.
     """
     try:
-        datetime.strptime(date_str, "%Y-%m-%d")
+        date_str = datetime.strptime(date_str, "%Y-%m-%d")
+        year, month, day = map(int, date_str.split('-'))
+        if year > 9999 or year < 1:
+            return False
+        if month > 12 or month < 1:
+            return False
+        if day > 31 or day < 1:
+            return False
         return True
     except ValueError:
         return False
+
 
 def validate_time(time_str):
     """
@@ -18,7 +26,12 @@ def validate_time(time_str):
     Returns True if the time is valid, False otherwise.
     """
     try:
-        datetime.strptime(time_str, "%H:%M")
+        time_str = datetime.strptime(time_str, "%H:%M")
+        hour, minute = map(int, time_str.split(':'))
+        if hour > 23 or hour < 1:
+            return False
+        if minute > 59 or minute < 1:
+            return False
         return True
     except ValueError:
         return False
@@ -29,15 +42,10 @@ def validate_receipt_data(receipt_data):
     Returns True if the data is valid, False otherwise.
     """
     retailer = receipt_data.get('retailer')
-    purchase_date = receipt_data.get('purchaseDate')
-    purchase_time = receipt_data.get('purchaseTime')
     total = receipt_data.get('total')
     items = receipt_data.get('items')
 
-    if not retailer or not purchase_date or not purchase_time or not total or not items:
-        return False
-
-    if not validate_date(purchase_date) or not validate_time(purchase_time):
+    if not retailer or not total or not items:
         return False
 
     for item in items:

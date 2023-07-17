@@ -32,6 +32,7 @@ import pyfiglet
 import requests
 
 from pathlib import Path
+from app.validation import *
 
 
 def process_receipt(data):
@@ -125,8 +126,22 @@ def get_manual_receipt_data():
     """
     print("\nEnter receipt information:")
     retailer = input('Retailer: ')
-    purchase_date = input('Purchase Date: ')
-    purchase_time = input('Purchase Time: ')
+    valid_date = False
+    while not valid_date:
+        purchase_date = input('Purchase Date: ')
+        if validate_date(purchase_date):
+            valid_date = True
+        else:
+            print("\nInvalid input. Please enter a valid date.")
+
+    valid_time = False
+    while not valid_time:
+        purchase_time = input('Purchase Time: ')
+        if validate_date(purchase_time):
+            valid_time = True
+        else:
+            print("\nInvalid input. Please enter a valid time.")
+
     total = input('Total: ')
 
     items = []
