@@ -174,13 +174,14 @@ $ python3 cli.py
 
 ## Files
 
-```
 - main.py: The main FastAPI server script that defines the API endpoints and handles receipt processing and points calculation.
 - models.py: Contains the Pydantic models for the Item and Receipt objects used in the API.
 - utils.py: Utility functions for generating receipt IDs, decoding IDs, converting time, and calculating points.
 - cli.py: A command line interface script that interacts with the FastAPI server to process receipts and retrieve points.
+- db.py: In-memory database.
+- validation.py: This module provides functions for validating date, time, and receipt data.
+- noxfile.py: This script sets up a virtual environment, installs required packages, and performs linting using Flake8.
 - README.md: This file, providing an overview of the repository and usage instructions.
-```
 
 ## Contributing
 
