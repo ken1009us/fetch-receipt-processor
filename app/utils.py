@@ -88,7 +88,6 @@ def calculate_points(id, uuid_dict):
     """
     points = 0
     breakdown = []
-    receipt = decode_receipt_id(id, uuid_dict)
 
     try:
         receipt = decode_receipt_id(id, uuid_dict)
