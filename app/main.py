@@ -49,7 +49,6 @@ def get_receipt_id(receipt: Receipt):
     uuid_dict[id] = [receipt]
     points, breakdown = calculate_points(id, uuid_dict)
     uuid_dict[id].append((points, breakdown))
-
     return {"id": id}
 
 
