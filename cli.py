@@ -149,6 +149,10 @@ def get_manual_receipt_data():
         "items": items
     }
 
+    if not validate_receipt_data(receipt_data):
+        print("\nInvalid input. Please enter a valid receipt.")
+        return get_manual_receipt_data()
+
     return receipt_data
 
 
