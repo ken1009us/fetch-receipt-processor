@@ -1,10 +1,20 @@
+"""
+This module provides functions for validating date, time, and receipt data.
+
+"""
+
 from datetime import datetime
 
 
 def validate_date(date_str):
     """
     Validates the date string in the format "YYYY-MM-DD".
-    Returns True if the date is valid, False otherwise.
+
+    Args:
+        date_str (str): The date string to validate.
+
+    Returns:
+        bool: True if the date is valid, False otherwise.
     """
     try:
         date_str = datetime.strptime(date_str, "%Y-%m-%d")
@@ -23,7 +33,12 @@ def validate_date(date_str):
 def validate_time(time_str):
     """
     Validates the time string in the format "HH:MM".
-    Returns True if the time is valid, False otherwise.
+
+    Args:
+        time_str (str): The time string to validate.
+
+    Returns:
+        bool: True if the time is valid, False otherwise.
     """
     try:
         time_str = datetime.strptime(time_str, "%H:%M")
@@ -36,10 +51,16 @@ def validate_time(time_str):
     except ValueError:
         return False
 
+
 def validate_receipt_data(receipt_data):
     """
     Validates the receipt data dictionary.
-    Returns True if the data is valid, False otherwise.
+
+    Args:
+        receipt_data (dict): The receipt data to validate.
+
+    Returns:
+        bool: True if the data is valid, False otherwise.
     """
     retailer = receipt_data.get('retailer')
     total = receipt_data.get('total')
