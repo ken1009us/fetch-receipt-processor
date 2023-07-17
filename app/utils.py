@@ -103,7 +103,8 @@ def calculate_points(id, uuid_dict):
             # Rule 1: 1 point for every alphanumeric character in retailer name
             alphanumeric_count = sum(char.isalnum() for char in retailer_name)
             points += alphanumeric_count
-            breakdown.append(f"{alphanumeric_count} points - retailer name has {alphanumeric_count} characters")
+            if alphanumeric_count > 0:
+                breakdown.append(f"{alphanumeric_count} points - retailer name has {alphanumeric_count} characters")
 
             # Rule 2: 50 points if total is a round dollar amount with no cents
             if total.is_integer():
@@ -118,11 +119,12 @@ def calculate_points(id, uuid_dict):
             # Rule 4: 5 points for every two items on the receipt
             item_count = len(items)
             points += ((item_count // 2) * 5)
-            if item_count % 2 == 0:
-                counted_items = item_count
-            else:
-                counted_items = item_count - 1
-            breakdown.append(f"{((item_count // 2) * 5)} points - {counted_items} items ({item_count // 2} pairs @ 5 points each)")
+            if item_count > 1:
+                if item_count % 2 == 0:
+                    counted_items = item_count
+                else:
+                    counted_items = item_count - 1
+                breakdown.append(f"{((item_count // 2) * 5)} points - {counted_items} items ({item_count // 2} pairs @ 5 points each)")
 
             # Rule 5: If the trimmed length of
             # the item description is a multiple of 3,
