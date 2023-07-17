@@ -49,7 +49,7 @@ def decode_receipt_id(receipt_id, receipt_dict):
       in the dictionary, or None otherwise.
     """
     try:
-        return receipt_dict[receipt_id]
+        return receipt_dict[receipt_id][0]
     except KeyError:
         return None
 
