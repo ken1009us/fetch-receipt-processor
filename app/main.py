@@ -46,7 +46,9 @@ def get_receipt_id(receipt: Receipt):
     - dict: A dictionary containing the generated receipt ID.
     """
     id = generate_receipt_id()
-    uuid_dict[id] = receipt
+    uuid_dict[id] = [receipt]
+    points, breakdown = calculate_points(id, uuid_dict)
+    uuid_dict[id].append((points, breakdown))
 
     return {"id": id}
 
@@ -66,6 +68,6 @@ def get_points(id: str):
     if id not in uuid_dict:
         raise HTTPException(status_code=404, detail="Receipt ID not found.")
 
-    points, breakdown = calculate_points(id, uuid_dict)
-
+    points = uuid_dict[id][1][0]
+    breakdown = uuid_dict[id][1][1]
     return {"points": points, "breakdown": breakdown}
