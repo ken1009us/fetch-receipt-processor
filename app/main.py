@@ -25,15 +25,13 @@ Functions:
 
 """
 
-
-from fastapi import FastAPI
+from .db import uuid_dict
+from fastapi import FastAPI, HTTPException
 from .models import Receipt
 from .utils import generate_receipt_id, calculate_points
 
 
 app = FastAPI()
-
-uuid_dict = {}
 
 
 @app.post("/receipts/process")
@@ -65,6 +63,9 @@ def get_points(id: str):
     - dict: A dictionary containing the points and breakdown information
             for the receipt ID.
     """
+    if id not in uuid_dict:
+        raise HTTPException(status_code=404, detail="Receipt ID not found.")
+
     points, breakdown = calculate_points(id, uuid_dict)
 
     return {"points": points, "breakdown": breakdown}
