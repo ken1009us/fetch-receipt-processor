@@ -137,7 +137,7 @@ def get_manual_receipt_data():
     valid_time = False
     while not valid_time:
         purchase_time = input('Purchase Time: ')
-        if validate_date(purchase_time):
+        if validate_time(purchase_time):
             valid_time = True
         else:
             print("\nInvalid input. Please enter a valid time.")
