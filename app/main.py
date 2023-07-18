@@ -14,18 +14,18 @@ Dependencies:
   and calculating points.
 
 Global Variables:
-- uuid_dict: A dictionary to store receipt IDs and their corresponding
+- db.uuid_dict: A dictionary to store receipt IDs and their corresponding
   Receipt objects.
 
 Functions:
 - get_receipt_id(receipt: Receipt): Generates a receipt ID for a given receipt
-  and stores it in uuid_dict.
+  and stores it in db.uuid_dict.
 - get_points(id: str): Retrieves the points and breakdown for a given
-  receipt ID from uuid_dict.
+  receipt ID from db.uuid_dict.
 
 """
 
-from .db import uuid_dict
+from db import db
 from fastapi import FastAPI, HTTPException
 from .models import Receipt
 from .utils import generate_receipt_id, calculate_points
@@ -37,7 +37,7 @@ app = FastAPI()
 @app.post("/receipts/process")
 def get_receipt_id(receipt: Receipt):
     """
-    Generates a receipt ID for a given receipt and stores it in uuid_dict.
+    Generates a receipt ID for a given receipt and stores it in db.uuid_dict.
 
     Parameters:
     - receipt (Receipt): The receipt object containing the receipt information.
@@ -46,16 +46,16 @@ def get_receipt_id(receipt: Receipt):
     - dict: A dictionary containing the generated receipt ID.
     """
     id = generate_receipt_id()
-    uuid_dict[id] = [receipt]
-    points, breakdown = calculate_points(id, uuid_dict)
-    uuid_dict[id].append((points, breakdown))
+    db.uuid_dict[id] = [receipt]
+    points, breakdown = calculate_points(id, db.uuid_dict)
+    db.uuid_dict[id].append((points, breakdown))
     return {"id": id}
 
 
 @app.get("/receipts/{id}/points")
 def get_points(id: str):
     """
-    Retrieves the points and breakdown for a given receipt ID from uuid_dict.
+    Retrieves the points and breakdown for a given receipt ID from db.uuid_dict.
 
     Parameters:
     - id (str): The receipt ID for which to retrieve the points.
@@ -64,8 +64,8 @@ def get_points(id: str):
     - dict: A dictionary containing the points and breakdown information
             for the receipt ID.
     """
-    if id not in uuid_dict:
+    if id not in db.uuid_dict:
         raise HTTPException(status_code=404, detail="Receipt ID not found.")
-    points = uuid_dict[id][1][0]
-    breakdown = uuid_dict[id][1][1]
+    points = db.uuid_dict[id][1][0]
+    breakdown = db.uuid_dict[id][1][1]
     return {"points": points, "breakdown": breakdown}
