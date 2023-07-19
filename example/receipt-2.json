@@ -1,0 +1,20 @@
+{
+    "retailer": "Target",
+    "purchaseDate": "2023-07-18",
+    "purchaseTime": "15:45",
+    "items": [
+        {
+            "shortDescription": "Samsung Galaxy S21",
+            "price": "799.99"
+        },
+        {
+            "shortDescription": "Wireless Earbuds",
+            "price": "79.99"
+        },
+        {
+            "shortDescription": "Charging Cable",
+            "price": "14.99"
+        }
+    ],
+    "total": "894.97"
+}

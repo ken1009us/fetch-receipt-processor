@@ -1,0 +1,20 @@
+{
+    "retailer": "Walmart",
+    "purchaseDate": "2023-07-18",
+    "purchaseTime": "12:30",
+    "items": [
+        {
+            "shortDescription": "HDMI Cable",
+            "price": "9.99"
+        },
+        {
+            "shortDescription": "USB Flash Drive",
+            "price": "14.49"
+        },
+        {
+            "shortDescription": "LED Desk Lamp",
+            "price": "39.99"
+        }
+    ],
+    "total": "64.47"
+}

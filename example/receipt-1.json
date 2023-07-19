@@ -1,0 +1,16 @@
+{
+    "retailer": "Walgreen",
+    "purchaseDate": "2023-02-04",
+    "purchaseTime": "13:29",
+    "items": [
+        {
+            "shortDescription": "Mountain Dew 12PK",
+            "price": "6.49"
+        },
+        {
+            "shortDescription": "Coca Cola",
+            "price": "5.25"
+        }
+    ],
+    "total": "11.74"
+}

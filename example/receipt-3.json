@@ -1,0 +1,16 @@
+{
+    "retailer": "Amazon",
+    "purchaseDate": "2023-07-18",
+    "purchaseTime": "10:15",
+    "items": [
+        {
+            "shortDescription": "Wireless Mouse",
+            "price": "29.99"
+        },
+        {
+            "shortDescription": "External Hard Drive",
+            "price": "89.99"
+        }
+    ],
+    "total": "119.98"
+}

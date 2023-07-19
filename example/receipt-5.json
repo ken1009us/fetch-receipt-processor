@@ -1,0 +1,20 @@
+{
+    "retailer": "Best Buy",
+    "purchaseDate": "2023-07-18",
+    "purchaseTime": "14:20",
+    "items": [
+        {
+            "shortDescription": "Sony Noise-Canceling Headphones",
+            "price": "199.99"
+        },
+        {
+            "shortDescription": "Bluetooth Speaker",
+            "price": "69.99"
+        },
+        {
+            "shortDescription": "Wireless Keyboard",
+            "price": "49.99"
+        }
+    ],
+    "total": "319.97"
+}
