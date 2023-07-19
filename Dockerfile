@@ -11,6 +11,8 @@ ENV PATH="/code/.venv/bin:$PATH"
 # Copy the requirements.txt file to the working directory
 COPY ./requirements.txt /code/requirements.txt
 
+COPY ./db /code/db
+
 # Install the required packages
 RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 
