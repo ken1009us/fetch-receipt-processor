@@ -128,7 +128,7 @@ This command builds a Docker image with the name receipt-processor based on the 
 4. After the image is built successfully, you can run a Docker container using the image with the following command:
 
 ```bash
-$ docker run -d --name mycontainer -p 80:80 receipt-processor
+$ docker run -d --name container1 -p 80:80 receipt-processor
 ```
 
 The docker run command creates and starts a new Docker container from the receipt-processor image. The -d flag runs the container in detached mode (in the background), --name specifies a name for the container, and -p maps the container's port 80 to the host's port 80, allowing access to the FastAPI server.
