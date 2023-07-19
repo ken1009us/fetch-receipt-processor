@@ -1,14 +1,15 @@
 # Receipt Processing and Points Calculation
 
 ```bash
-    ______     __       __       ____                              __
-   / ____/__  / /______/ /_     / __ \___ _      ______ __________/ /____
-  / /_  / _ \/ __/ ___/ __ \   / /_/ / _ \ | /| / / __ `/ ___/ __  / ___/
- / __/ /  __/ /_/ /__/ / / /  / _, _/  __/ |/ |/ / /_/ / /  / /_/ (__  )
-/_/    \___/\__/\___/_/ /_/  /_/ |_|\___/|__/|__/\__,_/_/   \__,_/____/
+    ____                 _       __     ____
+   / __ \___  ________  (_)___  / /_   / __ \_________  ________  ______________  _____
+  / /_/ / _ \/ ___/ _ \/ / __ \/ __/  / /_/ / ___/ __ \/ ___/ _ \/ ___/ ___/ __ \/ ___/
+ / _, _/  __/ /__/  __/ / /_/ / /_   / ____/ /  / /_/ / /__/  __(__  |__  ) /_/ / /
+/_/ |_|\___/\___/\___/_/ .___/\__/  /_/   /_/   \____/\___/\___/____/____/\____/_/
+                      /_/
 
 
-=== Fetch Receipt Processor System ===
+=== Receipt Processor System ===
 1. Process Receipt
 2. Retrieve Points
 3. Exit
@@ -26,13 +27,13 @@ This repository contains a set of Python scripts and modules for processing rece
 1. Clone this repository:
 
 ```bash
-$ git clone https://github.com/ken1009us/fetch-receipt-processor.git
+$ git clone https://github.com/ken1009us/receipt-processor.git
 ```
 
 2. Navigate to the project directory:
 
 ```bash
-$ cd fetch-receipt-processor
+$ cd receipt-processor
 ```
 
 3. Installing Python

@@ -1,6 +1,6 @@
 """
 This module contains a CLI program for interacting with the
-Fetch Receipt Processor system.
+Receipt Processor system.
 
 Dependencies:
 - json: Provides functions for working with JSON data.
@@ -95,7 +95,7 @@ def display_menu():
     """
     Displays the main menu options to the user.
     """
-    print("\n=== Fetch Receipt Processor System ===")
+    print("\n=== Receipt Processor System ===")
     print("1. Process Receipt")
     print("2. Retrieve Points")
     print("3. Exit")
@@ -222,7 +222,7 @@ def main():
     """
     Main routine for the CLI program.
     """
-    f = pyfiglet.figlet_format("Fetch Rewards", font="slant", width=20)
+    f = pyfiglet.figlet_format("Receipt Processor", font="slant", width=20)
     print(f)
 
     while True:
@@ -234,7 +234,7 @@ def main():
         elif choice == '2':
             retrieve_points_cli()
         elif choice == '3':
-            print("\nThank you for using the Fetch Receipt Processor System!")
+            print("\nThank you for using the Receipt Processor System!")
             break
         else:
             print("\nInvalid choice. Please try again.")
