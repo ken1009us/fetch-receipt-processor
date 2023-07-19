@@ -184,7 +184,7 @@ def process_receipt_cli():
     elif option == '2':
         try:
             print("Enter the path to the JSON file")
-            file_path = input("(i.e., ./example/morning-receipt.json): ")
+            file_path = input("(i.e., ./example/receipt-1.json): ")
             file_path = os.path.expanduser(file_path)
             p = Path(file_path)
             receipt_data = json.load(open(p))
